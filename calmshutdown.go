@@ -21,10 +21,10 @@ func Start(shutdownError chan error, server *http.Server, delay time.Duration) {
 
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 
-	sig := <-quit
+	signal := <-quit
 
 	logger := log.New(os.Stdout, "Graceful shutdown: ", log.Ldate|log.Ltime)
-	logger.Printf("%s signal was caught", sig.String())
+	logger.Printf("%s signal was caught", signal.String())
 
 	ctx, cancel := context.WithTimeout(context.Background(), delay)
 	defer cancel()
@@ -45,10 +45,10 @@ func AwaitGoroutinesAndStart(shutdownError chan error, server *http.Server,
 
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 
-	sig := <-quit
+	signal := <-quit
 
 	logger := log.New(os.Stdout, "Graceful shutdown: ", log.Ldate|log.Ltime)
-	logger.Printf("%s signal was caught", sig.String())
+	logger.Printf("%s signal was caught", signal.String())
 
 	ctx, cancel := context.WithTimeout(context.Background(), delay)
 	defer cancel()
@@ -61,5 +61,6 @@ func AwaitGoroutinesAndStart(shutdownError chan error, server *http.Server,
 	logger.Print("Completing background tasks")
 
 	globalWG.Wait()
+	
 	shutdownError <- nil
 }
