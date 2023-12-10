@@ -11,10 +11,10 @@ import (
 	"time"
 )
 
-// Start intercepts OS Interrupt and Terminate signals
-// and waits for a specified delay duration before shutting down the server.
-// An http.ErrServerClosed error is passed onto the shutdownError channel if the
-// shutdown is unsuccessful.
+// Start intercepts OS Interrupt and Terminate signals and waits 
+// for a specified delay duration before shutting down the server.
+// An http.ErrServerClosed error is passed onto the shutdownError 
+// channel if the shutdown is unsuccessful.
 func Start(shutdownError chan error, server *http.Server, delay time.Duration) {
 
 	quit := make(chan os.Signal, 1)
@@ -36,6 +36,8 @@ func Start(shutdownError chan error, server *http.Server, delay time.Duration) {
 // that the application spins up before shutting down the server.
 // It takes a global application-wide waitgroup(globalWG) that
 // keeps track of all such goroutines
+// An http.ErrServerClosed error is passed onto the shutdownError 
+// channel if the shutdown is unsuccessful.
 func AwaitGoroutinesAndStart(shutdownError chan error, server *http.Server,
 	delay time.Duration, globalWG *sync.WaitGroup) {
 
@@ -56,9 +58,8 @@ func AwaitGoroutinesAndStart(shutdownError chan error, server *http.Server,
 		shutdownError <- err
 	}
 
-	logger.Print("completing background tasks")
+	logger.Print("Completing background tasks")
 
 	globalWG.Wait()
 	shutdownError <- nil
-
 }
