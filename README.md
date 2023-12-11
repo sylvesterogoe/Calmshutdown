@@ -26,7 +26,7 @@ if err != nil {
 }
 ```
 
-## Example Usage for AwaitGoroutinesAndStart()
+## Example Usage for StartAndAwaitGoroutines()
 Run function in the background as a goroutine
 This function is suitable when there several background processes which are tracked
 
@@ -37,7 +37,7 @@ This function is suitable when there several background processes which are trac
 	server := http.Server{}
 	shutdownError := make(chan error)
 
-	go calmshutdown.AwaitGoroutinesAndStart(shutdownError, &server, 5*time.Second, &globalWG)
+	go calmshutdown.StartAndAwaitGoroutines(shutdownError, &server, 5*time.Second, &globalWG)
 
 	err := server.ListenAndServe()
 	if err != nil{
