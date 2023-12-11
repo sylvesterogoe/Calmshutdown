@@ -38,7 +38,7 @@ func Start(shutdownError chan error, server *http.Server, delay time.Duration) {
 // keeps track of all such goroutines
 // An http.ErrServerClosed error is passed onto the shutdownError 
 // channel if the shutdown is unsuccessful.
-func AwaitGoroutinesAndStart(shutdownError chan error, server *http.Server,
+func StartAndAwaitGoroutines(shutdownError chan error, server *http.Server,
 	delay time.Duration, globalWG *sync.WaitGroup) {
 
 	quit := make(chan os.Signal, 1)
