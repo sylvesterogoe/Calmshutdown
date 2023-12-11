@@ -32,7 +32,7 @@ func Start(shutdownError chan error, server *http.Server, delay time.Duration) {
 	shutdownError <- server.Shutdown(ctx)
 }
 
-// AwaitGoroutinesAndStart waits for all user defined goroutines
+// StartAndAwaitGoroutines waits for all user defined goroutines
 // that the application spins up before shutting down the server.
 // It takes a global application-wide waitgroup(globalWG) that
 // keeps track of all such goroutines
