@@ -5,7 +5,7 @@ Add package to project
 go get github.com/sylvesterogoe/calmshutdown
 ```
 
-## Example Usage for Start()
+## Example Usage for Start() function
 Run function in the background as a goroutine
 
 ```go
@@ -26,7 +26,7 @@ if err != nil {
 }
 ```
 
-## Example Usage for StartAndAwaitGoroutines()
+## Example Usage for StartAndAwaitGoroutines() function
 Run function in the background as a goroutine
 This function is suitable when there several background processes which are tracked
 
